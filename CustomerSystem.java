@@ -116,8 +116,11 @@ class CustomerSystem{
       
       //Convert the .txt file data to an integer
       int count = Integer.parseInt(line);
+      
+      //Increase the ID value by 1
       count++;
       
+      //Write the current ID value into the text file
       FileWriter fwrite = new FileWriter("uniqueID.txt");
       PrintWriter pwrite = new PrintWriter (fwrite);
       
