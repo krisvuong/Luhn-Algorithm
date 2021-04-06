@@ -103,7 +103,15 @@ class CustomerSystem{
       
     }
     
-    //UNIQUE ID GENERATOR
+    /**
+     * Generate a unique ID value
+     * 
+     * A text file containing a single integer is used as a counter to generate a unique ID value for each run.
+     * 
+     * @author - Kris Vuong
+     * @return - int value of ID
+     * @throws - IOException
+     */
     public static int uniqueIDGenerator()throws IOException{
       String line = "";
       
