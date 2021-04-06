@@ -4,12 +4,13 @@
 
 
 import java.util.Scanner;
-import java.io.File;
+import java.io.*;
 import java.io.FileNotFoundException;
+import java.net.URL;
 // More packages may be imported in the space below
 
 class CustomerSystem{
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
         String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
@@ -54,7 +55,7 @@ class CustomerSystem{
         );
     }
     
-    public static void enterCustomerInfo() throws FileNotFoundException {
+    public static void enterCustomerInfo() throws IOException {
     }
     
     //VALIDATE POSTAL CODE
@@ -97,7 +98,32 @@ class CustomerSystem{
     }
     
     //GENERATE CUSTOMER DATA FILE
-    public static void generateCustomerDataFile(){
+    public static void generateCustomerDataFile(String first, String last, String city, String postal, String credit) throws IOException {
+      FileWriter fw = new FileWriter("CustomerFile.csv", true);
+      BufferedWriter bw = new BufferedWriter(fw);
+      PrintWriter pw = new PrintWriter (bw);
+      
+      first = first + ",";
+      last = last + ",";
+      city = city + ",";
+      postal = postal + ",";
+      credit = credit + ",";
+      
+      //Append customer info into the CSV file
+      //pw.print(uniqueIDGenerator() + ",");  (uncomment once the ID generator is added)
+      pw.print(first);
+      pw.print(last);
+      pw.print(city);
+      pw.print(postal);
+      pw.print(credit);
+      pw.println();
+      pw.close();
+      
+      //Print customer file location (directory)
+      URL file = CustomerSystem.class.getResource("CustomerFile.csv");
+      String fileURL = file.toString();
+      String location = (fileURL.substring(5));
+      System.out.println("The customer data file is located in: " + location);
     }
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
