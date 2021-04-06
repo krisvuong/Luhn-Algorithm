@@ -4,12 +4,12 @@
 
 
 import java.util.Scanner;
-import java.io.File;
+import java.io.*;
 import java.io.FileNotFoundException;
 // More packages may be imported in the space below
 
 class CustomerSystem{
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
         String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
@@ -54,7 +54,7 @@ class CustomerSystem{
         );
     }
     
-    public static void enterCustomerInfo() throws FileNotFoundException {
+    public static void enterCustomerInfo() throws IOException {
     }
     
     //VALIDATE POSTAL CODE
@@ -99,6 +99,36 @@ class CustomerSystem{
     //GENERATE CUSTOMER DATA FILE
     public static void generateCustomerDataFile(){
     }
+    
+    //UNIQUE ID GENERATOR
+    public static int uniqueIDGenerator()throws IOException{
+      String line = "";
+      
+      //Create new file instance of an existing text file
+      File textLine = new File("uniqueID.txt");
+      
+      //Read the text file using scanner
+      Scanner reader = new Scanner(textLine);
+      while(reader.hasNextLine()){
+        line = reader.nextLine();
+      }
+      reader.close();
+      
+      //Convert the .txt file data to an integer
+      int count = Integer.parseInt(line);
+      count++;
+      
+      FileWriter fwrite = new FileWriter("uniqueID.txt");
+      PrintWriter pwrite = new PrintWriter (fwrite);
+      
+      pwrite.println(count);
+      pwrite.close();
+      
+      //Return the unique ID
+      return count;
+    }
+    
+    
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
