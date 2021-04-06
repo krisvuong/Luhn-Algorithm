@@ -57,7 +57,16 @@ class CustomerSystem{
     public static void enterCustomerInfo() throws FileNotFoundException {
     }
     
-    //VALIDATE POSTAL CODE
+    /**
+     * Validate the postal code.
+     * 
+     * The input postal code is validated by comparing its first three characters against a .csv file with existing postal codes.
+     * 
+     * @author - Kris Vuong
+     * @param - String inputPostal
+     * @return - boolean true/false
+     * @throws - FileNotFoundException
+     */
     public static boolean validatePostalCode(String inputPostal) throws FileNotFoundException {
       //Check that the inputted postal code is at least three characters
       inputPostal = inputPostal.replaceAll(" ", "");  //remove any blank spaces
