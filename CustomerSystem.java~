@@ -4,10 +4,12 @@
 
 
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 // More packages may be imported in the space below
 
 class CustomerSystem{
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException {
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
         String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
@@ -40,6 +42,7 @@ class CustomerSystem{
         reader.close();
         System.out.println("Program Terminated");
     }
+    
     public static void printMenu(){
         System.out.println("Customer and Sales System\n"
         .concat("1. Enter Customer Information\n")
@@ -50,21 +53,12 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
-    public static void enterCustomerInfo() {
+    
+    public static void enterCustomerInfo() throws FileNotFoundException {
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
     
     //VALIDATE POSTAL CODE
-    public static void validatePostalCode(){
+    public static boolean validatePostalCode(String inputPostal) throws FileNotFoundException {
       //Check that the inputted postal code is at least three characters
       inputPostal = inputPostal.replaceAll(" ", "");  //remove any blank spaces
       if(inputPostal.length() >= 3){
@@ -72,8 +66,6 @@ class CustomerSystem{
         //Format the inputted postal code
         inputPostal = inputPostal.toUpperCase();
         inputPostal = inputPostal.substring(0,3);
-        
-        System.out.println(inputPostal);
         
         //Declare the file of existing postal codes
         File postalCodes = new File("postal_codes.csv");
@@ -99,18 +91,12 @@ class CustomerSystem{
         return false;
       }
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    
+    //VALIDATE CREDIT CARD
     public static void validateCreditCard(){
     }
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
+    
+    //GENERATE CUSTOMER DATA FILE
     public static void generateCustomerDataFile(){
     }
     /*******************************************************************
