@@ -60,15 +60,7 @@ class CustomerSystem{
       
       boolean validPostal = false;
       boolean validCredit = false;
-    /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
-    * This method may also be broken down further depending on your algorithm
-    */
-    public static void enterCustomerInfo() throws IOException {
-      Scanner reader = new Scanner(System.in);
       
-      boolean validPostal = validatePostalCode();
       //Prompt customer info
       System.out.println("Enter first name");
       String first = reader.nextLine();
@@ -76,26 +68,23 @@ class CustomerSystem{
       String last = reader.nextLine();
       System.out.println("Enter city");
       String city = reader.nextLine();
-      String postal = "";
       
+      String postal = "";
       while (validPostal == false){
         System.out.println("Enter postal code");
         postal = reader.nextLine();
         validPostal = validatePostalCode(postal);
       }
       
+      String credit = "";
       while (validCredit == false){
         System.out.println("Enter credit card number");
-        String credit = reader.nextLine();
+        credit = reader.nextLine();
         //validCredit = validateCreditCard();    (uncomment when validateCreditCard is merged)
       }
-      System.out.println("Enter postal code");
-      String postal = reader.nextLine();
-      System.out.println("Enter credit card number");
-      String credit = reader.nextLine();
       
       //Create CSV file
-      FileWriter fw = new FileWriter("CustomerFile.csv", true);
+      FileWriter fw = new FileWriter(/Users/user/Desktop/compsci/Unit2/"CustomerFile.csv");
       BufferedWriter bw = new BufferedWriter(fw);
       PrintWriter pw = new PrintWriter (bw);
       
