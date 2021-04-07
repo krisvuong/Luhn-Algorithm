@@ -100,13 +100,13 @@ class CustomerSystem{
       PrintWriter pw = new PrintWriter (bw);
       
       //Write customer information into CustomerFile.csv
-      //pw.print(uniqueIDGenerator());         (uncomment this line when uniqueIDGenerator is merged)
+      pw.println();    //Start a new row for each customer's data
+      pw.print(uniqueIDGenerator() + ",");    //Calls the ID generator and prints the unique value into the csv with the customer's information
       pw.print(first);
       pw.print(last);
       pw.print(city);
       pw.print(postal);
       pw.print(credit);
-      pw.println();  //Start a new row for each customer
       pw.close();    //Close PrintWriter
     }
     
@@ -121,34 +121,35 @@ class CustomerSystem{
      * @throws - FileNotFoundException
      */
     public static boolean validatePostalCode(String inputPostal) throws FileNotFoundException {
+      inputPostal = inputPostal.replaceAll(" ", "");  //Remove any blank spaces
+      
       //Check that the inputted postal code is at least three characters
-      inputPostal = inputPostal.replaceAll(" ", "");  //remove any blank spaces
       if(inputPostal.length() >= 3){
         
-        //Format the inputted postal code
-        inputPostal = inputPostal.toUpperCase();
+        //Format the first three characters of the inputted postal to uppercase
         inputPostal = inputPostal.substring(0,3);
+        inputPostal = inputPostal.toUpperCase();
         
-        //Declare the file of existing postal codes
+        //Create a file instance of the csv containing existing postal codes
         File postalCodes = new File("postal_codes.csv");
         Scanner reader = new Scanner(postalCodes);
         
-        //Read the first three characters of existing postal codes (ex. L4H)
+        //Read the first three characters of valid postal codes
         while(reader.hasNextLine()){
           String line = reader.nextLine();
-          String validPostal = line.substring(0,line.indexOf('|'));
+          String validPostal = line.substring(0,line.indexOf('|'));  //Stops at delimiter "|"
           
           //Return TRUE if the inputted postal code matches an existing one
           if(inputPostal.equals(validPostal)){
             return true;
           }
         }
-        //Return FALSE for a non-existent postal code
+        //Return FALSE and print an error message for an invalid postal code
         System.out.println("Invalid postal code. Retry:");
         return false;
       }
       
-      //Error if the inputted postal code is less than three characters
+      //Return FALSE and print an error message if the inputted postal code is less than three characters
       else{
         System.out.println("Your postal code must be at least three characters.");
         return false;

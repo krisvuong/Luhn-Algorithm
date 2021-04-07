@@ -1,2 +1,3 @@
-First,Last,City,L4H,123,
-FIRST,LAST,CITY,L4H,12345,
+ID,FIRST,LAST,CITY,POSTAL,CREDIT
+,,,,,
+1,Jason,Reallastname,Toronto,M6A,1273891273
