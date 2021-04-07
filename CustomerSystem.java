@@ -5,12 +5,21 @@
 
 import java.util.Scanner;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import java.io.File;
 import java.io.FileNotFoundException;
 // More packages may be imported in the space below
 
 class CustomerSystem{
     public static void main(String[] args) throws FileNotFoundException {
+=======
+import java.io.*;
+// More packages may be imported in the space below
+
+class CustomerSystem{
+  
+    public static void main(String[] args) throws IOException {
+>>>>>>> Stashed changes
 =======
 import java.io.*;
 // More packages may be imported in the space below
@@ -37,6 +46,10 @@ class CustomerSystem{
                 // Only the line below may be editted based on the parameter list and how you design the method return
           // Any necessary variables may be added to this if section, but nowhere else in the code
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+              
+>>>>>>> Stashed changes
 =======
               
 >>>>>>> Stashed changes
@@ -112,6 +125,9 @@ class CustomerSystem{
       pw.print(credit);
       pw.println();
       pw.close();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
     
