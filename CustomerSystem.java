@@ -9,7 +9,6 @@ import java.io.FileNotFoundException;
 // More packages may be imported in the space below
 
 class CustomerSystem{
-  
     public static void main(String[] args) throws IOException {
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
@@ -162,7 +161,51 @@ class CustomerSystem{
     
     //GENERATE CUSTOMER DATA FILE
     public static void generateCustomerDataFile(){
+      
+      
+      
     }
+    
+    /**
+     * Generate a unique ID value
+     * 
+     * A text file containing a single integer is used as a counter to generate a unique ID value for each run.
+     * 
+     * @author - Kris Vuong
+     * @return - int value of ID
+     * @throws - IOException
+     */
+    public static int uniqueIDGenerator()throws IOException{
+      String line = "";
+      
+      //Create new file instance of an existing text file
+      File textLine = new File("uniqueID.txt");
+      
+      //Read the text file using scanner
+      Scanner reader = new Scanner(textLine);
+      while(reader.hasNextLine()){
+        line = reader.nextLine();
+      }
+      reader.close();
+      
+      //Convert the .txt file data to an integer
+      int count = Integer.parseInt(line);
+      
+      //Increase the ID value by 1
+      count++;
+      
+      //Write the current ID value into the text file
+      FileWriter fwrite = new FileWriter("uniqueID.txt");
+      PrintWriter pwrite = new PrintWriter (fwrite);
+      
+      pwrite.println(count);
+      pwrite.close();
+      
+      //Return the unique ID
+      return count;
+    }
+    
+    
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
