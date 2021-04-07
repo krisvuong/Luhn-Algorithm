@@ -54,55 +54,61 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-   
-    public static void enterCustomerInfo() throws IOException {
-      Scanner reader = new Scanner(System.in);
+    
+    /**
+     * Enter customer information.
+     * 
+     * Customer ID, first name, last name, city, postal code and credit card number are entered into a csv file.
+     * The uniqueIDGenerator, validatePostalCode and validateCreditCard methods are called.
+     * 
+     * @author - Kris Vuong
+     * @throws - IOException
+     */
+    public static void enterCustomerInfo()throws IOException{
+      Scanner reader = new Scanner(System.in);    //Initizalize Scanner
       
+      //Declare necessary variables for while loops
       boolean validPostal = false;
       boolean validCredit = false;
       
-      //Prompt customer info
+      //Prompt customer information
       System.out.println("Enter first name");
-      String first = reader.nextLine();
+      String first = reader.nextLine() + ",";    //Add comma (delimiter)
       System.out.println("Enter last name");
-      String last = reader.nextLine();
+      String last = reader.nextLine() + ",";
       System.out.println("Enter city");
-      String city = reader.nextLine();
+      String city = reader.nextLine() + ",";
       
+      //Prompt postal code input until valid
       String postal = "";
       while (validPostal == false){
         System.out.println("Enter postal code");
-        postal = reader.nextLine();
-        validPostal = validatePostalCode(postal);
+        postal = reader.nextLine() + ",";
+        validPostal = validatePostalCode(postal);  //calls validatePostalCode method
       }
       
+      //Prompt credit card input until valid
       String credit = "";
-      //while (validCredit == false){
+      //while (validCredit == false){         (uncomment when validateCreditCard is merged)
         System.out.println("Enter credit card number");
-        credit = reader.nextLine();
-        //validCredit = validateCreditCard();    (uncomment when validateCreditCard is merged)
+        credit = reader.nextLine() + ",";
+        //validCredit = validateCreditCard();  //calls validatePostalCode method (uncomment when validateCreditCard is merged)
       //}
       
-      //Create CSV file
-      FileWriter fw = new FileWriter("CustomerFile.csv", true);
+      //Create new CSV file
+      FileWriter fw = new FileWriter("CustomerFile.csv", true);  //"true": if the file already exists, then data is added to the file rather than overwriting current data
       BufferedWriter bw = new BufferedWriter(fw);
       PrintWriter pw = new PrintWriter (bw);
       
-      //Enter customer info into csv file
-      first = first + ",";
-      last = last + ",";
-      city = city + ",";
-      postal = postal + ",";
-      credit = credit + ",";
-      
-      //pw.print(uniqueIDGenerator());  (uncomment this line when merging to main)
+      //Write customer information into CustomerFile.csv
+      //pw.print(uniqueIDGenerator());         (uncomment this line when uniqueIDGenerator is merged)
       pw.print(first);
       pw.print(last);
       pw.print(city);
       pw.print(postal);
       pw.print(credit);
-      pw.println();
-      pw.close();
+      pw.println();  //Start a new row for each customer
+      pw.close();    //Close PrintWriter
     }
     
     /**
