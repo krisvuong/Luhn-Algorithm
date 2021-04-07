@@ -5,7 +5,11 @@
 
 import java.util.Scanner;
 import java.io.*;
+<<<<<<< Updated upstream
 import java.io.FileNotFoundException;
+=======
+// More packages may be imported in the space below
+>>>>>>> Stashed changes
 
 class CustomerSystem{
   
@@ -27,6 +31,10 @@ class CustomerSystem{
             if (userInput.equals(enterCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
           // Any necessary variables may be added to this if section, but nowhere else in the code
+<<<<<<< Updated upstream
+=======
+              
+>>>>>>> Stashed changes
                 enterCustomerInfo();
             }
             else if (userInput.equals(generateCustomerOption)) {
@@ -53,12 +61,24 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
+<<<<<<< Updated upstream
    
     public static void enterCustomerInfo() throws IOException {
       Scanner reader = new Scanner(System.in);
       
       boolean validPostal = false;
       boolean validCredit = false;
+=======
+    /*
+    * This method may be edited to achieve the task however you like.
+    * The method may not nesessarily be a void return type
+    * This method may also be broken down further depending on your algorithm
+    */
+    public static void enterCustomerInfo() throws IOException {
+      Scanner reader = new Scanner(System.in);
+      
+      boolean validPostal = validatePostalCode();
+>>>>>>> Stashed changes
       
       //Prompt customer info
       System.out.println("Enter first name");
@@ -67,6 +87,7 @@ class CustomerSystem{
       String last = reader.nextLine();
       System.out.println("Enter city");
       String city = reader.nextLine();
+<<<<<<< Updated upstream
       String postal = "";
       
       while (validPostal == false){
@@ -80,6 +101,12 @@ class CustomerSystem{
         String credit = reader.nextLine();
         //validCredit = validateCreditCard();    (uncomment when validateCreditCard is merged)
       }
+=======
+      System.out.println("Enter postal code");
+      String postal = reader.nextLine();
+      System.out.println("Enter credit card number");
+      String credit = reader.nextLine();
+>>>>>>> Stashed changes
       
       //Create CSV file
       FileWriter fw = new FileWriter("CustomerFile.csv", true);
