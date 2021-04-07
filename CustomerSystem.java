@@ -77,11 +77,11 @@ class CustomerSystem{
       }
       
       String credit = "";
-      while (validCredit == false){
+      //while (validCredit == false){
         System.out.println("Enter credit card number");
         credit = reader.nextLine();
         //validCredit = validateCreditCard();    (uncomment when validateCreditCard is merged)
-      }
+      //}
       
       //Create CSV file
       FileWriter fw = new FileWriter("CustomerFile.csv", true);
