@@ -4,12 +4,21 @@
 
 
 import java.util.Scanner;
+<<<<<<< Updated upstream
 import java.io.File;
 import java.io.FileNotFoundException;
 // More packages may be imported in the space below
 
 class CustomerSystem{
     public static void main(String[] args) throws FileNotFoundException {
+=======
+import java.io.*;
+// More packages may be imported in the space below
+
+class CustomerSystem{
+  
+    public static void main(String[] args) throws IOException {
+>>>>>>> Stashed changes
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
         String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
@@ -24,9 +33,13 @@ class CustomerSystem{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
 
-            if (userInput.equals(enterCustomerOption)){
+            if (userInput.equals(enterCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
           // Any necessary variables may be added to this if section, but nowhere else in the code
+<<<<<<< Updated upstream
+=======
+              
+>>>>>>> Stashed changes
                 enterCustomerInfo();
             }
             else if (userInput.equals(generateCustomerOption)) {
@@ -53,8 +66,53 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
+<<<<<<< Updated upstream
     
     public static void enterCustomerInfo() throws FileNotFoundException {
+=======
+    /*
+    * This method may be edited to achieve the task however you like.
+    * The method may not nesessarily be a void return type
+    * This method may also be broken down further depending on your algorithm
+    */
+    public static void enterCustomerInfo() throws IOException {
+      Scanner reader = new Scanner(System.in);
+      
+      boolean validPostal = validatePostalCode();
+      
+      //Prompt customer info
+      System.out.println("Enter first name");
+      String first = reader.nextLine();
+      System.out.println("Enter last name");
+      String last = reader.nextLine();
+      System.out.println("Enter city");
+      String city = reader.nextLine();
+      System.out.println("Enter postal code");
+      String postal = reader.nextLine();
+      System.out.println("Enter credit card number");
+      String credit = reader.nextLine();
+      
+      //Create CSV file
+      FileWriter fw = new FileWriter("CustomerFile.csv", true);
+      BufferedWriter bw = new BufferedWriter(fw);
+      PrintWriter pw = new PrintWriter (bw);
+      
+      //Enter customer info into csv file
+      first = first + ",";
+      last = last + ",";
+      city = city + ",";
+      postal = postal + ",";
+      credit = credit + ",";
+      
+      //pw.print(uniqueIDGenerator());  (uncomment this line when merging to main)
+      pw.print(first);
+      pw.print(last);
+      pw.print(city);
+      pw.print(postal);
+      pw.print(credit);
+      pw.println();
+      pw.close();
+>>>>>>> Stashed changes
     }
     
     /**
