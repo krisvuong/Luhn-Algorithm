@@ -98,29 +98,33 @@ class CustomerSystem{
     }
     
     //GENERATE CUSTOMER DATA FILE
-    public static void generateCustomerDataFile(String first, String last, String city, String postal, String credit) throws IOException {
-      FileWriter fw = new FileWriter("CustomerFile.csv", true);
-      BufferedWriter bw = new BufferedWriter(fw);
-      PrintWriter pw = new PrintWriter (bw);
+    public static void generateCustomerDataFile() throws IOException {
+      Scanner reader = new Scanner(System.in);
       
-      first = first + ",";
-      last = last + ",";
-      city = city + ",";
-      postal = postal + ",";
-      credit = credit + ",";
+      //Prompt user to enter name of customer file
+      System.out.println("What would you like to name the file?");
+      String fileName = reader.nextLine();
       
-      //Append customer info into the CSV file
-      //pw.print(uniqueIDGenerator() + ",");  (uncomment once the ID generator is added)
-      pw.print(first);
-      pw.print(last);
-      pw.print(city);
-      pw.print(postal);
-      pw.print(credit);
-      pw.println();
-      pw.close();
+      //Create empty CSV file
+      FileWriter fwrite = new FileWriter(fileName + ".csv");
+      BufferedWriter bwrite = new BufferedWriter(fwrite);
+      PrintWriter pwrite = new PrintWriter (bwrite);
+      
+      //Read current existing file of customer information 
+      String line = "";
+      File textLine = new File("CustomerFile.csv");
+      reader = new Scanner(textLine);
+      
+      //Write customer information into new file
+      while(reader.hasNextLine()){
+        line = reader.nextLine();
+        pwrite.println(line);
+      }
+      reader.close();
+      pwrite.close();
       
       //Print customer file location (directory)
-      URL file = CustomerSystem.class.getResource("CustomerFile.csv");
+      URL file = CustomerSystem.class.getResource(fileName + ".csv");
       String fileURL = file.toString();
       String location = (fileURL.substring(5));
       System.out.println("The customer data file is located in: " + location);
