@@ -1,37 +1,24 @@
-// Throughout this project, the use of data structures are not permitted such as methods like .split and .toCharArray
-
-
-
-
 import java.util.Scanner;
 import java.io.*;
 import java.io.FileNotFoundException;
 import java.net.URL;
-// More packages may be imported in the space below
 
 class CustomerSystem{
     public static void main(String[] args) throws IOException {
-        // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
         String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
         enterCustomerOption = "1";
         generateCustomerOption = "2";
         exitCondition = "9";
-
-        // More variables for the main may be declared in the space below
-
-
+        
         do{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
 
             if (userInput.equals(enterCustomerOption)) {
-                // Only the line below may be editted based on the parameter list and how you design the method return
-          // Any necessary variables may be added to this if section, but nowhere else in the code
                 enterCustomerInfo();
             }
             else if (userInput.equals(generateCustomerOption)) {
-                // Only the line below may be editted based on the parameter list and how you design the method return
                 generateCustomerDataFile();
             }
             else{
@@ -242,9 +229,4 @@ class CustomerSystem{
       //Return the unique ID
       return count;
     }
-    
-    
-    /*******************************************************************
-    *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
-    *******************************************************************/
 }
