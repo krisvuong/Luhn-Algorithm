@@ -84,7 +84,7 @@ class CustomerSystem{
       }
       
       //Create CSV file
-      FileWriter fw = new FileWriter(/Users/user/Desktop/compsci/Unit2/"CustomerFile.csv");
+      FileWriter fw = new FileWriter("CustomerFile.csv", true);
       BufferedWriter bw = new BufferedWriter(fw);
       PrintWriter pw = new PrintWriter (bw);
       
