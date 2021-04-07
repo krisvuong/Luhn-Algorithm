@@ -6,6 +6,7 @@
 import java.util.Scanner;
 import java.io.*;
 import java.io.FileNotFoundException;
+import java.net.URL;
 // More packages may be imported in the space below
 
 class CustomerSystem{
@@ -160,11 +161,47 @@ class CustomerSystem{
     public static void validateCreditCard(){
     }
     
-    //GENERATE CUSTOMER DATA FILE
-    public static void generateCustomerDataFile(){
+    
+    
+    /**
+    * Generate a Customer Data File.
+    * 
+    * The main csv containing all customer data is read and copied into a new csv.
+    * The new csv is named by the user, and the directory is provided.
+    * 
+    * @author - Kris Vuong
+    * @throws - IOException
+    */
+    public static void generateCustomerDataFile() throws IOException{
+      Scanner reader = new Scanner(System.in);  //Initialize Scanner
       
+      //Prompt name of file
+      System.out.println("What would you like to name the file?");
+      String fileName = reader.nextLine();
       
+      //Create empty CSV file
+      FileWriter fwrite = new FileWriter(fileName + ".csv");
+      BufferedWriter bwrite = new BufferedWriter(fwrite);
+      PrintWriter pwrite = new PrintWriter (bwrite);
       
+      //Read current CSV containing customer information 
+      String line = "";
+      File textLine = new File("CustomerFile.csv");
+      reader = new Scanner(textLine);
+      
+      //Write customer data into the new file
+      while(reader.hasNextLine()){
+        line = reader.nextLine();
+        pwrite.println(line);
+      }
+      reader.close();    //Close Scanner
+      pwrite.close();    //Close PrintWriter
+      
+      //Print file location (directory)
+      URL file = CustomerSystem.class.getResource(fileName + ".csv");    //Use URL to locate the directory of the provided file name
+      String fileURL = file.toString();    //Converts the URL directory to a String
+      String location = (fileURL.substring(5));  //Removes "file:" from the directory
+      System.out.println("The customer data file is located in: " + location);
     }
     
     /**
