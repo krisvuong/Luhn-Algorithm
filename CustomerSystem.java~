@@ -4,13 +4,12 @@
 
 
 import java.util.Scanner;
-import java.io.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 // More packages may be imported in the space below
 
 class CustomerSystem{
-  
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws FileNotFoundException {
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
         String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
@@ -25,7 +24,7 @@ class CustomerSystem{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
 
-            if (userInput.equals(enterCustomerOption)) {
+            if (userInput.equals(enterCustomerOption)){
                 // Only the line below may be editted based on the parameter list and how you design the method return
           // Any necessary variables may be added to this if section, but nowhere else in the code
                 enterCustomerInfo();
@@ -54,67 +53,11 @@ class CustomerSystem{
         .concat("Enter menu option (1-9)\n")
         );
     }
-   
-    public static void enterCustomerInfo() throws IOException {
-      Scanner reader = new Scanner(System.in);
-      
-      boolean validPostal = false;
-      boolean validCredit = false;
-      
-      //Prompt customer info
-      System.out.println("Enter first name");
-      String first = reader.nextLine();
-      System.out.println("Enter last name");
-      String last = reader.nextLine();
-      System.out.println("Enter city");
-      String city = reader.nextLine();
-      
-      String postal = "";
-      while (validPostal == false){
-        System.out.println("Enter postal code");
-        postal = reader.nextLine();
-        validPostal = validatePostalCode(postal);
-      }
-      
-      String credit = "";
-      //while (validCredit == false){
-        System.out.println("Enter credit card number");
-        credit = reader.nextLine();
-        //validCredit = validateCreditCard();    (uncomment when validateCreditCard is merged)
-      //}
-      
-      //Create CSV file
-      FileWriter fw = new FileWriter("CustomerFile.csv", true);
-      BufferedWriter bw = new BufferedWriter(fw);
-      PrintWriter pw = new PrintWriter (bw);
-      
-      //Enter customer info into csv file
-      first = first + ",";
-      last = last + ",";
-      city = city + ",";
-      postal = postal + ",";
-      credit = credit + ",";
-      
-      //pw.print(uniqueIDGenerator());  (uncomment this line when merging to main)
-      pw.print(first);
-      pw.print(last);
-      pw.print(city);
-      pw.print(postal);
-      pw.print(credit);
-      pw.println();
-      pw.close();
+    
+    public static void enterCustomerInfo() throws FileNotFoundException {
     }
     
-    /**
-     * Validate the postal code.
-     * 
-     * The input postal code is validated by comparing its first three characters against a .csv file with existing postal codes.
-     * 
-     * @author - Kris Vuong
-     * @param - String inputPostal
-     * @return - boolean true/false
-     * @throws - FileNotFoundException
-     */
+    //VALIDATE POSTAL CODE
     public static boolean validatePostalCode(String inputPostal) throws FileNotFoundException {
       //Check that the inputted postal code is at least three characters
       inputPostal = inputPostal.replaceAll(" ", "");  //remove any blank spaces
@@ -139,7 +82,6 @@ class CustomerSystem{
           }
         }
         //Return FALSE for a non-existent postal code
-        System.out.println("Invalid postal code. Retry:");
         return false;
       }
       
