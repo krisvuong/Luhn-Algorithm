@@ -79,7 +79,7 @@ class CustomerSystem{
       //while (validCredit == false){         (uncomment when validateCreditCard is merged)
         System.out.println("Enter credit card number");
         credit = reader.nextLine() + ",";
-        //validCredit = validateCreditCard();  //calls validatePostalCode method (uncomment when validateCreditCard is merged)
+        //validCredit = validateCreditCard();  //calls validateCreditCard method (uncomment when validateCreditCard is merged)
       //}
       
       //Create new CSV file
