@@ -80,8 +80,8 @@ class CustomerSystem{
 
     /*
     *Description:Validates the credit card number that is passed through it
-    *@ param cardString - The credit card number but is a string  
-    *@ return - returns a boolean whether the card is valid or not 
+    *@ param cardString - The credit card number  
+    *@ return - returns a boolean 
     */ 
       
     public static boolean validateCreditCard(String cardString) {    
