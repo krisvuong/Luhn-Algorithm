@@ -79,7 +79,7 @@ class CustomerSystem{
       while (validCredit == false){
         System.out.println("Enter credit card number");
         credit = reader.nextLine() + ",";
-        validCredit = validateCreditCard();  //calls validateCreditCard method
+        validCredit = validateCreditCard(credit);  //calls validateCreditCard method
       }
       
       //Create new CSV file
