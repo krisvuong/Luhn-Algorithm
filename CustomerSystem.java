@@ -76,11 +76,11 @@ class CustomerSystem{
       
       //Prompt credit card input until valid
       String credit = "";
-      //while (validCredit == false){         (uncomment when validateCreditCard is merged)
+      while (validCredit == false){
         System.out.println("Enter credit card number");
         credit = reader.nextLine() + ",";
-        //validCredit = validateCreditCard();  //calls validateCreditCard method (uncomment when validateCreditCard is merged)
-      //}
+        validCredit = validateCreditCard();  //calls validateCreditCard method
+      }
       
       //Create new CSV file
       FileWriter fw = new FileWriter("CustomerFile.csv", true);  //"true": if the file already exists, then data is added to the file rather than overwriting current data
