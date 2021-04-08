@@ -43,7 +43,10 @@ class CustomerSystem{
     }
     
     /**
-     * Description - Enters customer information into a csv file
+     * Enter customer information.
+     * 
+     * Customer ID, first name, last name, city, postal code and credit card number are entered into a csv file.
+     * The uniqueIDGenerator, validatePostalCode and validateCreditCard methods are called.
      * 
      * @author - Kris Vuong
      * @throws - IOException
@@ -96,15 +99,17 @@ class CustomerSystem{
     }
     
     /**
-     * Description - Validates the postal code
+     * Validate the postal code.
+     * 
+     * The input postal code is validated by comparing its first three characters against a .csv file with existing postal codes.
      * 
      * @author - Kris Vuong
-     * @param inputPostal- String of user's input postal code
+     * @param - String inputPostal
      * @return - boolean true/false
      * @throws - FileNotFoundException
      */
     public static boolean validatePostalCode(String inputPostal) throws FileNotFoundException {
-      inputPostal = inputPostal.replaceAll(" ", "");  //Remove any blank spaces ("l   4 h  " -> "l4h")
+      inputPostal = inputPostal.replaceAll(" ", "");  //Remove any blank spaces
       
       //Check that the inputted postal code is at least three characters
       if(inputPostal.length() >= 3){
@@ -143,43 +148,13 @@ class CustomerSystem{
     public static void validateCreditCard(){
     }
     
-    /**
-     * Description - Generates a unique ID value for each customer/run
-     * 
-     * @author - Kris Vuong
-     * @return - int value of ID
-     * @throws - IOException
-     */
-    public static int uniqueIDGenerator()throws IOException{
-      String line = "";
-      
-      //Create new file instance of an existing text file
-      File textLine = new File("uniqueID.txt");
-      
-      //Read the text file using scanner
-      Scanner reader = new Scanner(textLine);
-      while(reader.hasNextLine()){
-      }
-      reader.close();
-      
-      //Convert the .txt file data to an integer
-      int count = Integer.parseInt(line);
-      //Increase the ID value by 1
-      count++;
-      
-      //Write the current ID value into the text file
-      FileWriter fwrite = new FileWriter("uniqueID.txt");
-      PrintWriter pwrite = new PrintWriter (fwrite);
-      
-      pwrite.println(count);
-      pwrite.close();
-      
-      //Return the unique ID
-      return count;
-    }
+    
     
     /**
-    * Description - Generates a new csv containing all customer data
+    * Generate a Customer Data File.
+    * 
+    * The main csv containing all customer data is read and copied into a new csv.
+    * The new csv is named by the user, and the directory is provided.
     * 
     * @author - Kris Vuong
     * @throws - IOException
@@ -214,5 +189,44 @@ class CustomerSystem{
       String fileURL = file.toString();    //Converts the URL directory to a String
       String location = (fileURL.substring(5));  //Removes "file:" from the directory
       System.out.println("The customer data file is located in: " + location);
+    }
+    
+    /**
+     * Generate a unique ID value
+     * 
+     * A text file containing a single integer is used as a counter to generate a unique ID value for each run.
+     * 
+     * @author - Kris Vuong
+     * @return - int value of ID
+     * @throws - IOException
+     */
+    public static int uniqueIDGenerator()throws IOException{
+      String line = "";
+      
+      //Create new file instance of an existing text file
+      File textLine = new File("uniqueID.txt");
+      
+      //Read the text file using scanner
+      Scanner reader = new Scanner(textLine);
+      while(reader.hasNextLine()){
+        line = reader.nextLine();
+      }
+      reader.close();
+      
+      //Convert the .txt file data to an integer
+      int count = Integer.parseInt(line);
+      
+      //Increase the ID value by 1
+      count++;
+      
+      //Write the current ID value into the text file
+      FileWriter fwrite = new FileWriter("uniqueID.txt");
+      PrintWriter pwrite = new PrintWriter (fwrite);
+      
+      pwrite.println(count);
+      pwrite.close();
+      
+      //Return the unique ID
+      return count;
     }
 }
