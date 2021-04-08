@@ -24,68 +24,56 @@ class creditCardInfo{
         //Calls the method and assigns valid credit its new value
         validCredit = validateCreditCard(credit);
             
-        //Prints credit number as well because code won't run in this case
-        System.out.println(validCredit + credit);
+        
       }
       reader.close();
     }
 
 
-    
-    /*Docstrings here
-    *Description:
-    *@ param.
-    *@
+    /*
+    *Description:Validates the credit card number that is passed through it
+    *@ param cardString - The credit card number but is a string  
+    *@ return - returns a boolean whether the card is valid or not 
     */ 
       
     public static boolean validateCreditCard(String cardString) {    
-        //Initalize variables 
-        Integer len = cardString.length();
-        System.out.println(len);
-        /*
-        //Remove the comma first, only need to take the index and don't need to actually find the comma since we know where it is
-        String newString = (cardString.charAt(len, 1));
-        }
-        //Convert credit card number from string to an integer
-      }
-        */
-          //Integer cardNumber = Integer.parseInt(newString); 
+      //Initalize variables 
+      Integer len = cardString.length();
+      Boolean isValid = false;
+      //Integer sumEven = 0;
+      //Integer sumOdd = 0;
         
-        
-
-
-          
-          //System.out.println(cardNum);
-          //Declare variables
-          Boolean isValid = false;
-          return isValid;
-    }
-
- 
-      //Checks if the card number is atleast 9 digits in length
+      //Remove the comma first, we know where it is 
+      String newString = cardString.substring(0, len-1);
       
-      /*
-   
-            
-            if (cardNumb < 99999999){
-                System.out.println("Passes the 9 digits");
-                
-                isValid = true; 
-              
-              //Partial sum validation will be here
-            
-            }
-         
-          
-        //If credit card is invalid
-        else{
-            return isValid;
-       
-        }
+      //Convert credit card number from string to an integer, this also "breaks" if the user enters space(s) or invalid characters
+      Integer cardNumb = Integer.parseInt(newString); 
+      
+      //Checks if card number is atleast 9 digits in length 
+      if (cardNumb < 99999999){
+        System.out.println("Passes the 9 digits");
         
-        //Maybe return whether its valid or not
+        //Reverses the digits of the credit card
+
+        //Calculates the partial sum of even numbers
+        
+        //Calculates the partial sum of the odd numbers
+
+        //Calculates the sum of both partial sums
+
+        //If divisible by 10
+
+        //else 
+        return isValid; 
       }
-      */ 
+
+
+      //If credit card is invalid
+      else{
+        return isValid;
+      }
+    }
+      
   
 }
 
