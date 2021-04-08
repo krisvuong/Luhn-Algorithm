@@ -1,0 +1,180 @@
+/*
+ * 
+ * Date:April 3, 2021
+ * Name:Gordon Wu and Kris Vuong
+ * Teacher:Mr.Ho
+ * Description: Customer enters information and this program will validate the info. 
+ * */
+
+ // Throughout this project, the use of data structures are not permitted such as methods like .split and .toCharArray
+
+
+
+
+import java.util.Scanner;
+// More packages may be imported in the space below
+
+class CustomerSystem{
+    public static void main(String[] args){
+        // Please do not edit any of these variables
+        Scanner reader = new Scanner(System.in);
+        String userInput, enterCustomerOption, generateCustomerOption, exitCondition;
+        enterCustomerOption = "1";
+        generateCustomerOption = "2";
+        exitCondition = "9";
+
+        // More variables for the main may be declared in the space below
+
+
+        do{
+            printMenu();                                    // Printing out the main menu
+            userInput = reader.nextLine();                  // User selection from the menu
+
+            if (userInput.equals(enterCustomerOption)){
+                // Only the line below may be editted based on the parameter list and how you design the method return
+		        // Any necessary variables may be added to this if section, but nowhere else in the code
+                enterCustomerInfo();
+            }
+            else if (userInput.equals(generateCustomerOption)) {
+                // Only the line below may be editted based on the parameter list and how you design the method return
+                generateCustomerDataFile();
+            }
+            else{
+                System.out.println("Please type in a valid option (A number from 1-9)");
+            }
+
+        } while (!userInput.equals(exitCondition));         // Exits once the user types 
+        
+        reader.close();
+        System.out.println("Program Terminated");
+    }
+    public static void printMenu(){
+        System.out.println("Customer and Sales System\n"
+        .concat("1. Enter Customer Information\n")
+        .concat("2. Generate Customer data file\n")
+        .concat("3. Report on total Sales (Not done in this part)\n")
+        .concat("4. Check for fraud in sales data (Not done in this part)\n")
+        .concat("9. Quit\n")
+        .concat("Enter menu option (1-9)\n")
+        );
+    }
+    /*
+    * This method may be edited to achieve the task however you like.
+    * The method may not nesessarily be a void return type
+    * This method may also be broken down further depending on your algorithm
+    */
+    public static void enterCustomerInfo() {
+    }
+    /*
+    * This method may be edited to achieve the task however you like.
+    * The method may not nesessarily be a void return type
+    * This method may also be broken down further depending on your algorithm
+    */
+    public static void validatePostalCode(){
+    }
+    /*
+    * This method may be edited to achieve the task however you like.
+    * The method may not nesessarily be a void return type
+    * This method may also be broken down further depending on your algorithm
+    */
+
+    /*
+    *Description:Validates the credit card number that is passed through it
+    *@ param cardString - The credit card number but is a string  
+    *@ return - returns a boolean whether the card is valid or not 
+    */ 
+      
+    public static boolean validateCreditCard(String cardString) {    
+        //Initialize variables 
+        Integer len = cardString.length();
+        Integer len2 = 0; 
+        Boolean isValid = false;
+        Integer reversedNum = 0;
+        Integer modulusTen = 0; 
+        Integer sumEven = 0;
+        Integer sumOdd = 0;
+  
+        //Remove the comma first since we know where it is 
+        String newString = cardString.substring(0, len-1);
+        //Convert credit card number from string to an integer, this also "breaks" if the user enters space(s) or invalid characters
+        Integer cardNumb = Integer.parseInt(newString); 
+   
+        //Checks if card number is atleast 9 digits in length 
+        if (cardNumb > 99999999){
+          //Reverses the digits of the credit card 
+          while(cardNumb != 0){
+            //Takes each number from right to left using modulus of 
+            modulusTen = cardNumb%10; 
+            //10 times the reversed number + the numbers from right to left, thus reversing the digits
+            reversedNum = modulusTen + 10*reversedNum;
+            //To make sure it doesn't keep taking the same value 
+            cardNumb = cardNumb/10; 
+          }
+  
+          //Calculating the partial sum of both even and odd numbers
+          // Fix up some values
+          len = len - 1;
+          len2 = len; 
+          modulusTen = 0; 
+          //Use for loop to take each number 
+          for (int i = 0; i<len; i++){
+            //First take the number from right to left using modulus
+            modulusTen = reversedNum%10;
+            //Next remove the number that was used 
+            reversedNum = reversedNum/10; 
+  
+            //If the number of the reversed number is in its odd poisition
+            if(len2%2 != 0){
+              sumOdd = sumOdd + modulusTen; 
+            }
+            //If the number of the reversed number is in its even poisition 
+            else if(len2%2 == 0){
+              modulusTen = modulusTen*2; 
+                //If the number multiplied by 2 is greater than 9. 
+                if(modulusTen>9){
+                  //Initialize integers
+                  Integer partialNumber = modulusTen; 
+                  Integer modulusTen2 = 0;
+                  modulusTen = 0; 
+  
+                  //Take the partial sum of the 2 digit number 
+                  for (Integer j = 1 ; j< 3 ;j++){
+                    modulusTen2 = partialNumber%10; 
+                    modulusTen = modulusTen2 + modulusTen;
+                    partialNumber /=10;                
+                  }
+                }
+               
+              sumEven = sumEven + modulusTen; //Sum of the even positioned numbers
+            }
+  
+            len2 = len2 -1; //Changes the position from odd to even or even to odd
+          }
+  
+          //If the sum of both even and odd are divisible by ten 
+          if((sumEven+sumOdd)% 10 == 0){
+            isValid = true;
+            return isValid; 
+          }
+          //else credit card is invalid
+          else{
+          return isValid;
+          }
+        }
+  
+        //else credit card is invalid
+        else{
+          return isValid;        
+        }
+    }
+
+              
+            
+     
+
+    public static void generateCustomerDataFile(){
+    }
+    /*******************************************************************
+    *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
+    *******************************************************************/
+}
