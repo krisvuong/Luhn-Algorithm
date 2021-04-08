@@ -159,11 +159,13 @@ class CustomerSystem{
       //Read the text file using scanner
       Scanner reader = new Scanner(textLine);
       while(reader.hasNextLine()){
+        line = reader.nextLine();
       }
       reader.close();
       
       //Convert the .txt file data to an integer
       int count = Integer.parseInt(line);
+      
       //Increase the ID value by 1
       count++;
       
