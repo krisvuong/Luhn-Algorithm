@@ -80,6 +80,7 @@ class CustomerSystem{
 
     /*
     *Description:Validates the credit card number that is passed through it
+    *@ author - Gordon Wu 
     *@ param cardString - The credit card number  
     *@ return - returns a boolean 
     */ 
@@ -98,7 +99,8 @@ class CustomerSystem{
         String newString = cardString.substring(0, len-1);
         //Convert credit card number from string to an integer, this also "breaks" if the user enters space(s) or invalid characters
         Integer cardNumb = Integer.parseInt(newString); 
-   
+        
+	
         //Checks if card number is atleast 9 digits in length 
         if (cardNumb > 99999999){
           //Reverses the digits of the credit card 
@@ -106,28 +108,28 @@ class CustomerSystem{
             //Takes each number from right to left using modulus of 
             modulusTen = cardNumb%10; 
             //10 times the reversed number + the numbers from right to left, thus reversing the digits
-            reversedNum = modulusTen + 10*reversedNum;
+            reversedNum = modulusTen + 10*reversedNum;            
             //To make sure it doesn't keep taking the same value 
             cardNumb = cardNumb/10; 
           }
   
           //Calculating the partial sum of both even and odd numbers
-          // Fix up some values
+          //Changing some values to fit the loops 
           len = len - 1;
           len2 = len; 
           modulusTen = 0; 
-          //Use for loop to take each number 
+          //Use for loop to take each number
           for (int i = 0; i<len; i++){
             //First take the number from right to left using modulus
             modulusTen = reversedNum%10;
             //Next remove the number that was used 
             reversedNum = reversedNum/10; 
   
-            //If the number of the reversed number is in its odd poisition
+            //If the number of the reversed number is in its odd poisition. When the length is odd, we know that the far most right number should be an odd positioned number. 
             if(len2%2 != 0){
               sumOdd = sumOdd + modulusTen; 
             }
-            //If the number of the reversed number is in its even poisition 
+            //If the number of the reversed number is in its even poisition. When the length is even, we know that the far most right number should be an even positioned number.
             else if(len2%2 == 0){
               modulusTen = modulusTen*2; 
                 //If the number multiplied by 2 is greater than 9. 
@@ -137,10 +139,11 @@ class CustomerSystem{
                   Integer modulusTen2 = 0;
                   modulusTen = 0; 
   
-                  //Take the partial sum of the 2 digit number 
+                  //Take the partial sum of the 2 digit number
+		  //Loops twice
                   for (Integer j = 1 ; j< 3 ;j++){
                     modulusTen2 = partialNumber%10; 
-                    modulusTen = modulusTen2 + modulusTen;
+                    modulusTen = modulusTen2 + modulusTen;     //Adds the sum of the digits
                     partialNumber /=10;                
                   }
                 }
